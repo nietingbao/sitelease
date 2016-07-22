@@ -25,11 +25,6 @@ if(Yii::$app->user->isGuest)
     <?php ActiveForm::begin(); ?>
 
     <div class="form-group">
-        <?php echo Html::label('Username','username'); ?>
-        <?php echo Html::textInput('username','',['class' => 'form-control']); ?>
-    </div>
-
-    <div class="form-group">
         <?php echo Html::label('Password','password'); ?>
         <?php echo Html::passwordInput('password','',['class' => 'form-control']); ?>
     </div>

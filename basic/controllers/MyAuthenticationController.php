@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: ÄôÍ¢±¦
+ * User: ï¿½ï¿½Í¢ï¿½ï¿½
  * Date: 2016/7/12
  * Time: 16:45
  */
@@ -17,6 +17,8 @@ use yii\web\NotFoundHttpException;
 
 class MyAuthenticationController extends Controller
 {
+    public $layout = "mylayout";
+    public $css = ['css/login.css'];
     public function actionLogin()
     {
         $error = null;
@@ -62,8 +64,13 @@ class MyAuthenticationController extends Controller
             if(($model->validate())&&($model->user != null))
             {
                 Yii::$app->user->login($model->user);
-                return $this->render('//sites-with-gii/index',['dataProvider' => $dataProvider,
-                    'searchModel' => $searchModel]);
+
+                return $this->redirect('/sitelease/basic/web/?r=sites-with-gii/index',
+                    [
+                    'searchModel' => $searchModel,
+
+                    ]
+                );
             }
             else
             {

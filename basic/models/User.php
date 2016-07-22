@@ -60,7 +60,6 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     {
         return $this->authKey;
     }
-
     /**
      * @inheritdoc
      */

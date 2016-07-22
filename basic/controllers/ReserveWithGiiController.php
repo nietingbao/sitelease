@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Site;
-use app\models\SiteSearch;
+use app\models\Reserve;
+use app\models\ReserveSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * SitesWithGiiController implements the CRUD actions for Site model.
+ * ReserveWithGiiController implements the CRUD actions for Reserve model.
  */
-class SitesWithGiiController extends Controller
+class ReserveWithGiiController extends Controller
 {
     public $layout = "mylayout";
     public function behaviors()
@@ -28,24 +28,22 @@ class SitesWithGiiController extends Controller
     }
 
     /**
-     * Lists all Site models.
+     * Lists all Reserve models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new SiteSearch();
-
+        $searchModel = new ReserveSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-
         ]);
     }
 
     /**
-     * Displays a single Site model.
+     * Displays a single Reserve model.
      * @param integer $id
      * @return mixed
      */
@@ -57,16 +55,16 @@ class SitesWithGiiController extends Controller
     }
 
     /**
-     * Creates a new Site model.
+     * Creates a new Reserve model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Site();
+        $model = new Reserve();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->site_id]);
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -75,7 +73,7 @@ class SitesWithGiiController extends Controller
     }
 
     /**
-     * Updates an existing Site model.
+     * Updates an existing Reserve model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -85,7 +83,7 @@ class SitesWithGiiController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->site_id]);
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -94,7 +92,7 @@ class SitesWithGiiController extends Controller
     }
 
     /**
-     * Deletes an existing Site model.
+     * Deletes an existing Reserve model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -106,16 +104,19 @@ class SitesWithGiiController extends Controller
         return $this->redirect(['index']);
     }
 
+    public function actionReserve(){
+        return $this->render('reserve');
+    }
     /**
-     * Finds the Site model based on its primary key value.
+     * Finds the Reserve model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Site the loaded model
+     * @return Reserve the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Site::findOne($id)) !== null) {
+        if (($model = Reserve::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

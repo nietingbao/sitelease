@@ -14,6 +14,7 @@ use yii\filters\VerbFilter;
  */
 class CustomersWithGiiController extends Controller
 {
+    public $layout = 'mylayout';
     public function behaviors()
     {
         return [

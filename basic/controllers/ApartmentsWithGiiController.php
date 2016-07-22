@@ -14,8 +14,10 @@ use yii\filters\VerbFilter;
  */
 class ApartmentsWithGiiController extends Controller
 {
+    public $layout = "mylayout";
     public function behaviors()
     {
+
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),

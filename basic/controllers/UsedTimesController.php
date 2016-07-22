@@ -3,8 +3,8 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Site;
-use app\models\SiteSearch;
+use app\models\UsedTimes;
+use app\models\UsedTimesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -12,7 +12,7 @@ use yii\filters\VerbFilter;
 /**
  * SitesWithGiiController implements the CRUD actions for Site model.
  */
-class SitesWithGiiController extends Controller
+class UsedTimesController extends Controller
 {
     public $layout = "mylayout";
     public function behaviors()
@@ -33,7 +33,7 @@ class SitesWithGiiController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new SiteSearch();
+        $searchModel = new UsedTimesSearch();
 
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -63,7 +63,7 @@ class SitesWithGiiController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Site();
+        $model = new UsedTimes();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->site_id]);
@@ -85,7 +85,7 @@ class SitesWithGiiController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->site_id]);
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -115,7 +115,7 @@ class SitesWithGiiController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = Site::findOne($id)) !== null) {
+        if (($model = UsedTimes::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

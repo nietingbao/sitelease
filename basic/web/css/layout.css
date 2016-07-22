@@ -1,0 +1,63 @@
+.header{
+    width: 100%;
+}
+
+.logo{
+    position: relative;
+
+}
+.nav{
+    position: relative;
+    float: left;
+    width: 200px;
+    height: 800px;
+
+}
+/*.mynav{*/
+    /*height: 30px;*/
+
+/*}*/
+/*.mynav a{*/
+    /*width: 200px;*/
+    /*height: 30px;*/
+    /*text-decoration: none;*/
+
+/*}*/
+/*.mynav a:hover{*/
+    /*text-decoration: none;*/
+/*}*/
+/*.mynav:hover{*/
+    /*background-color: yellow;*/
+/*}*/
+li a{
+    font-size: large;
+}
+
+
+.content{
+    float: left;
+    position: relative;
+    left: 40px;
+    top: 40px;
+}
+.welcome{
+    position: relative;
+    left: 10px;
+    font-family: "宋体";
+    line-height: 28px;
+    color: #204d74;
+
+}
+.strong{
+    color: #999999;
+}
+.br{
+    width: 100%;
+    background: #3276b1;
+    height: 2px;
+}
+.br1{
+    width: 100%;
+    background: gainsboro;
+    height: 1px;
+}
