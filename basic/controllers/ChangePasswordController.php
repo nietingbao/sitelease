@@ -15,37 +15,33 @@ use app\models\PasswordForm;
 
 class ChangePasswordController extends Controller
 {
+    public $layout = "mylayout";
     public function actionChangePassword(){
         $model=new PasswordForm;
-        $request = YII::$app->request;
-
-        if($request->isPost){
-            $p = $request->post('PasswordForm');
-            $id = YII::$app->user->id;
-            echo $id;
-            var_dump(Yii::$app->user->identity);
-
-            $admin=  User::findIdentity($id);
-
-            $password = $admin->password;
-            if(Yii::$app->validatePassword($p['password'], $password)){
-                if($p['pass1'] == $p['pass2']){
-                    $newPass = $p['pass1'];
+        if($model->load(Yii::$app->request->post())){
+            $id = YII::$app->user->getId();
+            $user=  User::findIdentity($id);
+            $password = $user->password;
+            if($password == $model->password){
+                if($model->pass1 == $model->pass2){
+                    $newPass = $model->pass1;
                     $connection = \Yii::$app->db;
-                    $r = $connection->createCommand()->update('user', ['password' => $newPass], 'id='.$id)->execute();
+                    $r = $connection->createCommand()->update('user',
+                        ['password' => $newPass], 'id='.$id)->execute();
                     if($r){
                         Yii::$app->user->logout();
-                        return $this->goHome();
+                        return $this->goHome();//应该改为跳转到修改成功的一个界面或者是一个提示；
                     }else{
+                        echo 'dasdasdas';
                         return $this->goBack();
                     }
                 }
             }else{
                 Yii::$app->session->setFlash('contact','旧密码错误');
-                return $this->redirect(array('site/password'));
+                return $this->redirect(array('change-password/index'));
             }
         }else{
-            return $this->render('change-password',['model'=>$model]);
+            return $this->render('index',['model'=>$model]);
         }
     }
 }

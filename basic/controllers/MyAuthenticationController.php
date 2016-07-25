@@ -62,18 +62,15 @@ class MyAuthenticationController extends Controller
         $error = null;
         $model = new \app\models\LoginForm();
         if($model->load(Yii::$app->request->post())){
-
             if(($model->validate()))
             {
                 $model->login();
-                echo "sdadasd";
                 return $this->redirect('/sitelease/basic/web/?r=sites-with-gii/index');
             }
             else
             {
                 $error = 'Username/password error';
             }
-
         }
         return $this->render('login-with-model',['model' => $model,'error' => $error]);
     }

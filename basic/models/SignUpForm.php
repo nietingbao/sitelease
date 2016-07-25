@@ -17,6 +17,7 @@ class SignUpForm extends Model
 //    public $id;
     public $username;
     public $password;
+    public $repassword;
 
     public function rules(){
         return [
@@ -25,6 +26,8 @@ class SignUpForm extends Model
             ['username','string','min' => 2,'max' => 20],
             ['password','required','message' => '密码不能为空'],
             ['password','string','min' => 6],
+            ['repassword','required','message' => '请再输一次密码'],
+            ['repassword','compare','compareAttribute' => 'password'],
         ];
     }
 

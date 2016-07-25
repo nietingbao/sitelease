@@ -11,6 +11,7 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\bootstrap\ActiveForm;
+use app\models\User;
 
 class PasswordForm extends Model
 {
@@ -22,11 +23,10 @@ class PasswordForm extends Model
         return [
             ['password','required','message' => '密码不能为空'],
             ['password','string','min' => 5],
-//            ['repassword','required','message' => '密码不能为空'],
+//           ['repassword','required','message' => '密码不能为空'],
 //            ['repassword','string','min' => 5],
 //            ['repassword','compare','compareAttribute' => 'password','message'=>'两次密码不一致'],
             [['pass1','pass2'],'required','message' =>'密码不能为空']
         ];
     }
-
 }

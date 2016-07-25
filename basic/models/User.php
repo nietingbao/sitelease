@@ -51,7 +51,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function getId()
     {
-//        return $this->id;
+        return $this->id;
     }
 
     /**

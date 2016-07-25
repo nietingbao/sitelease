@@ -19,6 +19,7 @@ $this->registerCssFile('@web/css/login.css');
     <img src="/sitelease/basic/web/picture/logIn_logo.png">
     <?php echo $form->field($model,'username')->label('用户名'); ?>
     <?php echo $form->field($model,'password')->passwordInput()->label('密码'); ?>
+    <?php echo $form->field($model,'repassword')->passwordInput()->label('再输入一次密码'); ?>
     <div class="form-group">
         <?php echo Html::submitButton('Sign Up',['class' => 'btn btn-primary','name' =>
             'signup-button']); ?>
