@@ -88,6 +88,9 @@ $this->registerCssFile('@web/css/layout.css');
                     <li role="presentation" data-toggle="tab" role="tab"><a href=
                     "/sitelease/basic/web/?r=used-times/index"
                     data-toggle="tab">usedtimes</a></li>
+                    <li role="presentation" data-toggle="tab" role="tab"><a href=
+                    "/sitelease/basic/web/?r=change-password/change-password"
+                     data-toggle="tab">changepassword</a></li>
 
             </ul>
             </div>

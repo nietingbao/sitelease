@@ -8,6 +8,7 @@
 
 namespace app\controllers;
 
+use app\models\SignUpForm;
 use Yii;
 use yii\web\Controller;
 use app\models\User;
@@ -61,16 +62,12 @@ class MyAuthenticationController extends Controller
         $error = null;
         $model = new \app\models\LoginForm();
         if($model->load(Yii::$app->request->post())){
-            if(($model->validate())&&($model->user != null))
+
+            if(($model->validate()))
             {
-                Yii::$app->user->login($model->user);
-
-                return $this->redirect('/sitelease/basic/web/?r=sites-with-gii/index',
-                    [
-                    'searchModel' => $searchModel,
-
-                    ]
-                );
+                $model->login();
+                echo "sdadasd";
+                return $this->redirect('/sitelease/basic/web/?r=sites-with-gii/index');
             }
             else
             {
@@ -79,5 +76,22 @@ class MyAuthenticationController extends Controller
 
         }
         return $this->render('login-with-model',['model' => $model,'error' => $error]);
+    }
+
+    public function actionSignUp(){
+        $model = new SignUpForm();
+        if($model->load(Yii::$app->request->post()))
+        {
+            if($user = $model->signUp())
+            {
+
+                return $this->redirect('/sitelease/basic/web/?r=sites-with-gii/index');
+            }
+            else
+            {
+                var_dump($user);
+            }
+        }
+        return $this->render('sign-up',['model' => $model]);
     }
 }
