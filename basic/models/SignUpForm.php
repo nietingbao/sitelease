@@ -25,9 +25,9 @@ class SignUpForm extends Model
             ['username','unique','targetClass' => 'app\models\User'],
             ['username','string','min' => 2,'max' => 20],
             ['password','required','message' => '密码不能为空'],
-            ['password','string','min' => 6],
+            ['password','string','min' => 5],
             ['repassword','required','message' => '请再输一次密码'],
-            ['repassword','compare','compareAttribute' => 'password'],
+            ['repassword','compare','compareAttribute' => 'password','message' => '两次密码不一致'],
         ];
     }
 

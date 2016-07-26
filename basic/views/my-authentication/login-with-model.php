@@ -38,7 +38,7 @@ $this->registerCssFile('@web/css/login.css');
 
 <?php } else { ?>
 <!-- <h2>you are authenticated!</h2>-->
-<?= $this->redirect(['/customers-with-gii/index']); ?>
+<?php //echo $this->redirect('customers-with-gii/index'); ?>
 <?php echo Html::a('Logout',['my-authentication/logout'],['class' => 'btn btn-
     warning']);?>
 <?php } ?>
