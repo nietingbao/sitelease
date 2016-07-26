@@ -40,6 +40,9 @@ $config = [
         ],
         'db' => require(__DIR__ . '/db.php'),
         'language' => 'zh-CN',
+        'authManager' => [
+            'class' => 'yii\rbac\PhpManager',
+        ],
     ],
     'params' => $params,
 ];
