@@ -8,6 +8,7 @@ use app\models\SiteSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * SitesWithGiiController implements the CRUD actions for Site model.
@@ -24,6 +25,22 @@ class SitesWithGiiController extends Controller
                     'delete' => ['post'],
                 ],
             ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['index','view','update','delete','create','look'],
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['index','view','update','delete','create','look'],
+                        'roles' => ['admin'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['index'],
+                        'roles' => ['teacher'],
+                    ],
+                ]
+            ]
         ];
     }
 
@@ -38,6 +55,19 @@ class SitesWithGiiController extends Controller
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+
+        ]);
+    }
+    //只是查看场地，并不能对场地进行管理
+    public function actionLook()
+    {
+        $searchModel = new SiteSearch();
+
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('look', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
 

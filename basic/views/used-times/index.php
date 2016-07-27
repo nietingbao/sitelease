@@ -16,12 +16,13 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Used Times', ['create'], ['class' => 'btn btn-success']) ?>
+        <!--<?= Html::a('Create Used Times', ['create'], ['class' => 'btn btn-success']) ?>
+        -->
     </p>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+    //    'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
@@ -30,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'site_name',
             'used_times',
 
-            ['class' => 'yii\grid\ActionColumn'],
+       //     ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 

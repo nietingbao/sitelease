@@ -44,13 +44,13 @@ class Customer extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'name' => 'Name',
-            'remark' => 'Remark',
-            'apartment' => 'Apartment',
-            'phonenum' => 'Phonenum',
-            'logintime' => 'Logintime',
-            'loginip' => 'Loginip',
+            'id' => '编号',
+            'name' => '名称',
+            'remark' => '备注',
+            'apartment' => '部门',
+            'phonenum' => '电话号码',
+            'logintime' => '登录时间',
+            'loginip' => '登录IP',
         ];
     }
 }

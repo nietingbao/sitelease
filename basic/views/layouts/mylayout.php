@@ -74,35 +74,39 @@ $this->registerCssFile('@web/css/layout.css');
                 <li role="presentation">
                     <a href=
                        "/sitelease/basic/web/?r=reserve-with-gii/index"
-                       data-toggle = "tab">recent reserve</a></li>
+                       data-toggle = "tab">最近预约</a></li>
                 <li role="presentation">
                     <a href=
                        "/sitelease/basic/web/?r=reserve-with-gii/reserve"
-                       data-toggle = "tab">reserve</a></li>
-                <li role="presentation" role="tab">
-                    <a href=
-                       "/sitelease/basic/web/?r=sites-with-gii/index"
-                       data-toggle = "tab">sites</a></li>
-                <li role="presentation" role="tab">
-                    <a href=
-                       "/sitelease/basic/web/?r=customers-with-gii/index"
-                       data-toggle = "tab">customers</a></li>
+                       data-toggle = "tab">预约场地</a></li>
                 <li role="presentation" data-toggle="tab" role="tab">
                     <a href=
-                       "/sitelease/basic/web/?r=apartments-with-gii/index"
-                       data-toggle="tab">apartments</a></li>
+                       "/sitelease/basic/web/?r=sites-with-gii/look"
+                       data-toggle="tab">查看场地</a></li>
                 <li role="presentation" data-toggle="tab" role="tab">
                     <a href=
                        "/sitelease/basic/web/?r=used-times/index"
-                       data-toggle="tab">usedtimes</a></li>
+                       data-toggle="tab">使用统计</a></li>
+                <li role="presentation" role="tab">
+                    <a href=
+                       "/sitelease/basic/web/?r=sites-with-gii/index"
+                       data-toggle = "tab">场地管理</a></li>
+                <li role="presentation" role="tab">
+                    <a href=
+                       "/sitelease/basic/web/?r=customers-with-gii/index"
+                       data-toggle = "tab">人员管理</a></li>
+                <li role="presentation" data-toggle="tab" role="tab">
+                    <a href=
+                       "/sitelease/basic/web/?r=apartments-with-gii/index"
+                       data-toggle="tab">部门管理</a></li>
                 <li role="presentation" data-toggle="tab" role="tab">
                     <a href=
                        "/sitelease/basic/web/?r=change-password/change-password"
-                       data-toggle="tab">changepassword</a></li>
+                       data-toggle="tab">修改密码</a></li>
                 <li role="presentation" data-toggle="tab" role="tab">
                     <a href=
                        "/sitelease/basic/web/?r=personal-info/view"
-                       data-toggle="tab">PersonalInfo</a></li>
+                       data-toggle="tab">个人信息</a></li>
 
 
             </ul>

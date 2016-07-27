@@ -41,7 +41,10 @@ $config = [
         'db' => require(__DIR__ . '/db.php'),
         'language' => 'zh-CN',
         'authManager' => [
-            'class' => 'yii\rbac\PhpManager',
+            'class' => 'yii\rbac\DbManager',
+            'itemTable' => 'auth_item',
+            'assignmentTable' => 'auth_assignment',
+            'itemChildTable' => 'auth_item_child',
         ],
     ],
     'params' => $params,

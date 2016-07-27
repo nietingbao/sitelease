@@ -39,6 +39,10 @@ class SignUpForm extends Model
             $user->password = $this->password;
             if($user->save())
             {
+                //给新注册的成员赋予老师的角色
+                $auth = Yii::$app->authManager;
+                $teacherRole = $auth->getRole('teacher');
+                $auth->assign($teacherRole,$user->getId());
                 return $user;
 
             }

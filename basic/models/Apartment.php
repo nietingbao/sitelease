@@ -39,9 +39,9 @@ class Apartment extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'name' => 'Name',
-            'site_to_lease' => 'Site To Lease',
+            'id' => '部门编号',
+            'name' => '部门名称',
+            'site_to_lease' => '可租用场地',
         ];
     }
 }

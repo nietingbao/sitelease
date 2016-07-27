@@ -42,11 +42,11 @@ class Site extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'site_id' => 'Site ID',
-            'site_name' => 'Site Name',
-            'site_type' => 'Site Type',
-            'site_galleryful' => 'Site Galleryful',
-            'site_facilities' => 'Site Facilities',
+            'site_id' => '编号',
+            'site_name' => '场地名称',
+            'site_type' => '场地类型',
+            'site_galleryful' => '可容纳人数',
+            'site_facilities' => '设备',
         ];
     }
 }

@@ -65,7 +65,14 @@ class MyAuthenticationController extends Controller
             if(($model->validate()))
             {
                 $model->login();
-                return $this->redirect('/sitelease/basic/web/?r=sites-with-gii/index');
+                if($model->username == 'admin'){
+                    return $this->redirect('/sitelease/basic/web/?r=reserve-with-gii/index');
+                }
+                else
+                {
+                    $this->layout = "layout2";
+                    return $this->redirect('/sitelease/basic/web/?r=reserve-with-gii/reserve');
+                }
             }
             else
             {

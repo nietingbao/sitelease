@@ -35,7 +35,7 @@ class RbacController extends Controller
         //添加changePassword修改密码权限
         $changePassword = $auth->createPermission('changePassword');
         $changePassword->description ='修改密码';
-        $auth->add($personalInfo);
+        $auth->add($changePassword);
 
         //添加管理员权限
         //添加recentReserve权限
@@ -70,9 +70,10 @@ class RbacController extends Controller
         $admin = $auth->createRole('admin');
         $auth->add($admin);
         //赋予管理员权限
-        $auth->addChild($admin,$reserve);
-        $auth->addChild($admin,$personalInfo);
-        $auth->addChild($admin,$changePassword);
+//        $auth->addChild($admin,$reserve);
+//        $auth->addChild($admin,$personalInfo);
+//        $auth->addChild($admin,$changePassword);
+        $auth->addChild($admin,$teacher);
         $auth->addChild($admin,$recentReserve);
         $auth->addChild($admin,$apartment);
         $auth->addChild($admin,$customers);

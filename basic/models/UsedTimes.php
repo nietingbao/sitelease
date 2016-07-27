@@ -41,10 +41,10 @@ class UsedTimes extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'date' => 'Date',
-            'site_name' => 'Site Name',
-            'used_times' => 'Used Times',
+            'id' => '编号',
+            'date' => '日期',
+            'site_name' => '场地名',
+            'used_times' => '使用次数',
         ];
     }
 }
