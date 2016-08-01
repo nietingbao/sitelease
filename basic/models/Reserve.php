@@ -14,6 +14,7 @@ use Yii;
  * @property string $depart
  * @property string $operator
  * @property string $activity
+ * @property string $beginperiod
  */
 class Reserve extends \yii\db\ActiveRecord
 {
@@ -31,9 +32,10 @@ class Reserve extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['site', 'date', 'begintime', 'depart', 'operator', 'activity'], 'required'],
+            [['site', 'date', 'begintime', 'depart', 'operator', 'activity', 'beginperiod'], 'required'],
             [['date', 'begintime'], 'safe'],
-            [['site', 'depart', 'operator', 'activity'], 'string', 'max' => 20]
+            [['site', 'depart', 'operator', 'activity'], 'string', 'max' => 20],
+            [['beginperiod'], 'string', 'max' => 10]
         ];
     }
 
@@ -43,13 +45,14 @@ class Reserve extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => '编号',
+            'id' => 'ID',
             'site' => '场地名称',
             'date' => '日期',
             'begintime' => '开始时间',
-            'depart' => '部门名称',
+            'depart' => '部门',
             'operator' => '租借人',
             'activity' => '活动内容',
+            'beginperiod' => '租借开始时段',
         ];
     }
 }

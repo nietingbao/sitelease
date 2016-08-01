@@ -15,8 +15,8 @@ use app\models\Customer;
 
 class PersonalInfoController extends Controller
 {
+    public $layout = "mylayout";
     public function actionView(){
-        var_dump(Yii::$app->user->getId());
         $user = User::findOne(['id' => Yii::$app->user->getId()]);
         $username = $user->username;
         $customer = Customer::findOne(['name' => $username]);

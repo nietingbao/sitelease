@@ -10,6 +10,7 @@ use app\assets\AppAsset;
 
 AppAsset::register($this);
 $this->registerCssFile('@web/css/layout.css');
+$this->title = "场地租赁系统";
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -18,7 +19,7 @@ $this->registerCssFile('@web/css/layout.css');
     <meta charset="<?= Yii::$app->charset ?>"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
+    <title>场地租赁系统</title>
     <?php $this->head() ?>
 </head>
 <body>
@@ -36,11 +37,21 @@ $this->registerCssFile('@web/css/layout.css');
                 <br>
                 <br>
             </div>
-            <div class="welcome">欢迎你<strong>admin
-                </strong>场地租赁系统</div>
+            <div class="welcome">欢迎你<strong>
+                    <?= Yii::$app->session->get('username');?>
+                </strong>场地租赁系统
+                <div class="logout">
+                    <?php echo Html::a('注销',['my-authentication/logout'],['class' => 'btn btn-
+        warning']);?>
+                </div>
+            </div>
+
             <div class="br1">
                 <br>
             </div>
+
+
+
         </div>
 
             <div class="nav">
@@ -73,39 +84,39 @@ $this->registerCssFile('@web/css/layout.css');
 
                 <li role="presentation">
                     <a href=
-                       "/sitelease/basic/web/?r=reserve-with-gii/index"
+                       "/sitelease/basic/web/reserve-with-gii/index"
                        data-toggle = "tab">最近预约</a></li>
                 <li role="presentation">
                     <a href=
-                       "/sitelease/basic/web/?r=reserve-with-gii/reserve"
+                       "/sitelease/basic/web/reserve-with-gii/reserve"
                        data-toggle = "tab">预约场地</a></li>
                 <li role="presentation" data-toggle="tab" role="tab">
                     <a href=
-                       "/sitelease/basic/web/?r=sites-with-gii/look"
+                       "/sitelease/basic/web/sites-with-gii/look"
                        data-toggle="tab">查看场地</a></li>
                 <li role="presentation" data-toggle="tab" role="tab">
                     <a href=
-                       "/sitelease/basic/web/?r=used-times/index"
+                       "/sitelease/basic/web/used-times/index"
                        data-toggle="tab">使用统计</a></li>
                 <li role="presentation" role="tab">
                     <a href=
-                       "/sitelease/basic/web/?r=sites-with-gii/index"
+                       "/sitelease/basic/web/sites-with-gii/index"
                        data-toggle = "tab">场地管理</a></li>
                 <li role="presentation" role="tab">
                     <a href=
-                       "/sitelease/basic/web/?r=customers-with-gii/index"
+                       "/sitelease/basic/web/customers-with-gii/index"
                        data-toggle = "tab">人员管理</a></li>
                 <li role="presentation" data-toggle="tab" role="tab">
                     <a href=
-                       "/sitelease/basic/web/?r=apartments-with-gii/index"
+                       "/sitelease/basic/web/apartments-with-gii/index"
                        data-toggle="tab">部门管理</a></li>
                 <li role="presentation" data-toggle="tab" role="tab">
                     <a href=
-                       "/sitelease/basic/web/?r=change-password/change-password"
+                       "/sitelease/basic/web/change-password/change-password"
                        data-toggle="tab">修改密码</a></li>
                 <li role="presentation" data-toggle="tab" role="tab">
                     <a href=
-                       "/sitelease/basic/web/?r=personal-info/view"
+                       "/sitelease/basic/web/personal-info/view"
                        data-toggle="tab">个人信息</a></li>
 
 

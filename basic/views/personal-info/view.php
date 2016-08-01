@@ -9,8 +9,13 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
+
 /* @var $this yii\web\View */
 /* @var $customer app\models\Customer */
+
+//如果是管理员之外的身份，功能就只有一部分
+if(Yii::$app->user->getId() != 10)
+    $this->context->layout = "layout2";
 
 $this->title = 'personal info';
 $this->params['breadcrumbs'][] = ['label' => 'Customers', 'url' => ['index']];
@@ -20,30 +25,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $customer->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $customer->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
+    <?= DetailView::widget([
+        'model' => $customer,
+        'attributes' => [
+            'id',
+            ['label'=>'用户名','value'=>$customer->name],
 
-<!--    --><?//= DetailView::widget([
-//        'customer' => $customer,
-//        'attributes' => [
-//            'id',
-//            'name',
-//            'remark',
-//            'apartment',
-//            'phonenum',
-//            'logintime',
-//            'loginip',
-//        ],
-//    ]) ?>
-    <?= $customer->name;?>
-    <?= $customer->phonenum;?>
+        ],
+    ]) ?>
+
+
 
 </div>

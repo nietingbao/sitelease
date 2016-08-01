@@ -10,6 +10,8 @@ use app\assets\AppAsset;
 
 AppAsset::register($this);
 $this->registerCssFile('@web/css/layout.css');
+
+$this->title = "场地租赁系统";
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -36,11 +38,18 @@ $this->registerCssFile('@web/css/layout.css');
                 <br>
                 <br>
             </div>
-            <div class="welcome">欢迎你<strong>admin
-                </strong>场地租赁系统</div>
+            <div class="welcome">欢迎你<strong>
+                    <?= Yii::$app->session->get('username');?>
+                </strong>场地租赁系统
+                <div class="logout">
+                <?php echo Html::a('注销',['my-authentication/logout'],['class' => 'btn btn-
+        warning']);?>
+                </div>
+            </div>
             <div class="br1">
                 <br>
             </div>
+
         </div>
 
         <div class="nav">

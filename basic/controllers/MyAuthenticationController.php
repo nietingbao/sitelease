@@ -12,13 +12,14 @@ use app\models\SignUpForm;
 use Yii;
 use yii\web\Controller;
 use app\models\User;
+use app\models\Customer;
 use app\models\Site;
 use app\models\SiteSearch;
 use yii\web\NotFoundHttpException;
 
 class MyAuthenticationController extends Controller
 {
-    public $layout = "mylayout";
+    public $layout = "loginLayout";
     public $css = ['css/login.css'];
     public function actionLogin()
     {
@@ -35,6 +36,7 @@ class MyAuthenticationController extends Controller
                 if($user->validatePassword($password))
                 {
                     Yii::$app->user->login();
+
                 }
                 else
                 {
@@ -65,13 +67,20 @@ class MyAuthenticationController extends Controller
             if(($model->validate()))
             {
                 $model->login();
+                //登录之后应该更新登录时间；
+
                 if($model->username == 'admin'){
-                    return $this->redirect('/sitelease/basic/web/?r=reserve-with-gii/index');
+                    $session=Yii::$app->session;
+                    $session->set('username',$model->username);
+
+                    return $this->redirect(['reserve-with-gii/index']);
                 }
                 else
                 {
-                    $this->layout = "layout2";
-                    return $this->redirect('/sitelease/basic/web/?r=reserve-with-gii/reserve');
+                    $session=Yii::$app->session;
+                    $session->set('username',$model->username);
+
+                    return $this->redirect('/sitelease/basic/web/reserve-with-gii/index');
                 }
             }
             else

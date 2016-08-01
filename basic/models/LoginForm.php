@@ -5,6 +5,7 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use app\models\User;
+use app\models\Customer;
 /**
  * LoginForm is the model behind the login form.
  */
@@ -57,6 +58,13 @@ class LoginForm extends Model
     public function login()
     {
         if ($this->validate()) {
+            $customer = Customer::findOne(['name' => $this->username]);
+            date_default_timezone_set("PRC");
+            $time=date("Y-m-d H:i:s",time());
+
+            Customer::updateAll(['logintime' => $time], 'name = :name',
+                [':name'=>$this->username]);
+
             return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0);
         } else {
             return false;

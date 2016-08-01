@@ -10,6 +10,10 @@ use yii\widgets\ActiveForm;
 ?>
 
 <?php
+//如果是管理员之外的身份，功能就只有一部分
+if(Yii::$app->user->getId() != 10)
+    $this->context->layout = "layout2";
+
 \app\assets\AppAsset::register($this);
 $this->registerCssFile('@web/css/login.css');
 ?>

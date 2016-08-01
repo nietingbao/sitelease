@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'remark',
             'apartment',
             'phonenum',
-            // 'logintime',
+            'logintime',
             // 'loginip',
 
             ['class' => 'yii\grid\ActionColumn'],

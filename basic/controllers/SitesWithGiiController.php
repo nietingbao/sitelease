@@ -36,7 +36,7 @@ class SitesWithGiiController extends Controller
                     ],
                     [
                         'allow' => true,
-                        'actions' => ['index'],
+                        'actions' => ['look'],
                         'roles' => ['teacher'],
                     ],
                 ]
