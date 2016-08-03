@@ -127,7 +127,9 @@ class ReserveWithGiiController extends Controller
     public function actionReserve(){
         $site = new Site();
         $site = Site::find()->all();
-        return $this->render('reserve',['site' => $site]);
+        $reserve = new Reserve();
+        $reserve = Reserve::find()->all();
+        return $this->render('reserve',['site' => $site,'reserve'=>$reserve]);
     }
     /**
      * Finds the Reserve model based on its primary key value.

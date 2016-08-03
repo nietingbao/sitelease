@@ -4,11 +4,19 @@
 //document.getElementsByClassName("disable").href=null;//在ie之外的浏览器把连接地址删除
 $(document).ready(function(){
     var mydate = new Date();
+    //document.write($("#year option:selected").text());
+    //document.write(mydate.getDate());
+    $(".reserved").css({
+        "text-decoration":"none",
+        "color":"red",
+    })
     $(".date").each(function(){
-        if($(this).text()<=mydate.getDate()){
+        if($("#year option:selected").text()<mydate.getFullYear()||
+            (($("#year option:selected").text()==mydate.getFullYear()&&$("#month option:selected").text()<(mydate.getMonth()+1)))||
+            ($("#year option:selected").text()==mydate.getFullYear()&&$("#month option:selected").text()==(mydate.getMonth()+1)&&$(this).text()<=mydate.getDate())){
             $(this).addClass("disable");
         }
-    })
+    });
     $(".disable").each(function(){
         $(this).css({
                 "background-color":"#CCC",
@@ -23,6 +31,5 @@ $(document).ready(function(){
            even.preventDefault();
        })
     });
-
 })
 
