@@ -8,6 +8,7 @@
  */?>
 <?php
 //如果是管理员之外的身份，功能就只有一部分
+
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use app\assets\AppAsset;
@@ -17,7 +18,8 @@ $this->title = '场地租赁系统';
 
 \app\assets\AppAsset::register($this);
 $this->registerCssFile('@web/css/login.css');
-
+$this->registerJsFile('@web/javascript/jquery.min.js');
+$this->registerJsFile('@web/javascript/showDate.js');
 ?>
 <h1><?= Html::encode($this->title) ?></h1>
 <form method="get" action = "<?php echo \yii\helpers\Url::to(['reserve-with-gii/reserve']);?>">
@@ -47,7 +49,7 @@ $this->registerCssFile('@web/css/login.css');
 <!--    <input type="text" name="month">月-->
     <input type="submit">
 </form>
-
+<a id="abc" href="http://www.baidu.com">baidu</a>
 <?php
 $year=$month ="";
 function test_input($data){
@@ -97,7 +99,6 @@ function getDays($year,$month){
 }
 ?>
 
-
 <table class="table table-bordered" width="100%" cellpadding="0" cellspacing="0"
        class="con_tb sat_tb room border">
     <?php
@@ -109,9 +110,10 @@ function getDays($year,$month){
 <?php
 for($i=1;$i<=$days;$i++){
 ?>
-    <td><a href=
-           "/sitelease/basic/web/reserve-with-gii/create?&site=<?= $sites->site_name?>&p=1&date=<?= $year."-".$month."-".$i?>">
-            <?= $i?></a></td>
+    <td class="date"><a href=
+           "/sitelease/basic/web/reserve-with-gii/create?&site=<?= $sites->site_name?>&p=1&date=<?= $year."-".$month."-".$i?>"
+              ><?= $i?>
+           </a></td>
 <?php }?>
     </tr>
     <tr>
@@ -119,8 +121,9 @@ for($i=1;$i<=$days;$i++){
         <?php
         for($i=1;$i<=$days;$i++){
         ?>
-        <td><a href=
-               "/sitelease/basic/web/reserve-with-gii/create?&site=<?= $sites->site_name?>&p=2&date=<?= $year."-".$month."-".$i?>">
+        <td class="date"><a href=
+               "/sitelease/basic/web/reserve-with-gii/create?&site=<?= $sites->site_name?>&p=2&date=<?= $year."-".$month."-".$i?>"
+                >
                 <?= $i?></a></td>
         <?php }?>
     </tr>
@@ -129,8 +132,9 @@ for($i=1;$i<=$days;$i++){
         <?php
         for($i=1;$i<=$days;$i++){
         ?>
-    <td><a href=
-           "/sitelease/basic/web/reserve-with-gii/create?&site=<?= $sites->site_name?>&p=3&date=<?= $year."-".$month."-".$i?>">
+    <td class="date"><a href=
+           "/sitelease/basic/web/reserve-with-gii/create?&site=<?= $sites->site_name?>&p=3&date=<?= $year."-".$month."-".$i?>"
+            >
             <?= $i?></a></td>
         <?php }?>
     </tr>
