@@ -83,19 +83,19 @@ $this->title = "场地租赁系统";
 
                 <li role="presentation">
                     <a href=
-                       "/sitelease/basic/web/?r=reserve-with-gii/reserve"
+                       "/sitelease/basic/web/reserve-with-gii/reserve"
                        data-toggle = "tab">预约场地</a></li>
                 <li role="presentation" data-toggle="tab" role="tab">
                     <a href=
-                       "/sitelease/basic/web/?r=sites-with-gii/look"
+                       "/sitelease/basic/web/sites-with-gii/look"
                        data-toggle="tab">查看场地</a></li>
                 <li role="presentation" data-toggle="tab" role="tab">
                     <a href=
-                       "/sitelease/basic/web/?r=change-password/change-password"
+                       "/sitelease/basic/web/change-password/change-password"
                        data-toggle="tab">修改密码</a></li>
                 <li role="presentation" data-toggle="tab" role="tab">
                     <a href=
-                       "/sitelease/basic/web/?r=personal-info/view"
+                       "/sitelease/basic/web/personal-info/view"
                        data-toggle="tab">个人信息</a></li>
             </ul>
         </div>

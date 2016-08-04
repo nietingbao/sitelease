@@ -23,14 +23,16 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="personal-info">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+
 
     <?= DetailView::widget([
         'model' => $customer,
         'attributes' => [
             'id',
             ['label'=>'用户名','value'=>$customer->name],
-
+            ['label'=>'备注','value'=>$customer->remark],
+            ['label'=>'部门','value'=>$customer->apartment],
+            ['label'=>'电话','value'=>$customer->phonenum],
         ],
     ]) ?>
 

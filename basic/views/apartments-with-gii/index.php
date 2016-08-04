@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\ApartmentSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Apartments';
+$this->title = '';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="apartment-index">
@@ -16,10 +16,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Apartment', ['create'], ['class' => 'btn btn-success']) ?>
+
     </p>
 
     <?= GridView::widget([
+        'summary'=>'',
         'dataProvider' => $dataProvider,
         //'filterModel' => $searchModel,
         'columns' => [

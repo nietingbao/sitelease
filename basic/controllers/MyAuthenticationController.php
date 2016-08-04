@@ -80,7 +80,7 @@ class MyAuthenticationController extends Controller
                     $session=Yii::$app->session;
                     $session->set('username',$model->username);
 
-                    return $this->redirect('/sitelease/basic/web/reserve-with-gii/index');
+                    return $this->redirect(['reserve-with-gii/reserve']);
                 }
             }
             else

@@ -21,8 +21,9 @@ $this->registerCssFile('@web/css/login.css');
 $this->registerJsFile('@web/javascript/jquery.min.js');
 $this->registerJsFile('@web/javascript/showDate.js');
 ?>
-<h1><?= Html::encode($this->title) ?></h1>
+
 <form method="get" action = "<?php echo \yii\helpers\Url::to(['reserve-with-gii/reserve']);?>">
+    请选择具体时间
     <select name="year" id="year">
         <option value="2001" selected="selected" id="year2001">2001</option>
         <option value="2010" id="year2010">2010</option>
@@ -52,11 +53,8 @@ $this->registerJsFile('@web/javascript/showDate.js');
         <option value="12" id="month12">12</option>
     </select>
     月
-<!--    <input type="text" name="year">年-->
-<!--    <input type="text" name="month">月-->
     <input type="submit">
 </form>
-<a id="abc" href="http://www.baidu.com">baidu</a>
 <?php
 $year=$month ="";
 function test_input($data){
@@ -71,8 +69,9 @@ if(isset($_GET["year"])) {
     $month = (!empty(test_input($_GET["month"])) ? test_input($_GET["month"]) : null);
 }
 else{
-    $year=2001;
-    $month=1;
+
+    $year=date('Y');
+    $month=(date('m')*1)/1;
 }
 ?>
 <script>
@@ -138,7 +137,16 @@ for($i=1;$i<=$days;$i++){
         ?>
         <td class="date"><a href=
                "/sitelease/basic/web/reserve-with-gii/create?&site=<?= $sites->site_name?>&p=2&date=<?= $year."-".$month."-".$i?>"
-                >
+                <?php
+                foreach($reserve as $r){
+                    $str = $year."-".$month."-".$i;
+                    if($r->site==$sites->site_name&&$r->beginperiod=="下午"&&strtotime($str)==strtotime($r->date)){
+                        $attr = "reserved" ?>
+                        class="<?= $attr?>"
+                        <?php
+                    }
+                }
+                ?>>
                 <?= $i?></a></td>
         <?php }?>
     </tr>
@@ -149,7 +157,16 @@ for($i=1;$i<=$days;$i++){
         ?>
     <td class="date"><a href=
            "/sitelease/basic/web/reserve-with-gii/create?&site=<?= $sites->site_name?>&p=3&date=<?= $year."-".$month."-".$i?>"
-            >
+            <?php
+            foreach($reserve as $r){
+                $str = $year."-".$month."-".$i;
+                if($r->site==$sites->site_name&&$r->beginperiod=="晚上"&&strtotime($str)==strtotime($r->date)){
+                    $attr = "reserved" ?>
+                    class="<?= $attr?>"
+                    <?php
+                }
+            }
+            ?>>
             <?= $i?></a></td>
         <?php }?>
     </tr>
