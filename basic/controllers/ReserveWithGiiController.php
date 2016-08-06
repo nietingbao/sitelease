@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\UsedTimes;
 use Yii;
 use app\models\Reserve;
 use app\models\ReserveSearch;
@@ -10,6 +11,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\YearForm;
 use app\models\Site;
+
 /**
  * ReserveWithGiiController implements the CRUD actions for Reserve model.
  */
@@ -74,6 +76,12 @@ class ReserveWithGiiController extends Controller
      */
     public function actionCreate()
     {
+        $usedtimes = new UsedTimes();
+        $usedtimes->date = $_GET['date'];
+        $usedtimes->site_name = $_GET['site'];
+        $previous = new UsedTimes();//先获取以前的所有的数据，遍历，如果有和当前场地一致，而且处于同一个
+                                    //时间段的话，就在原来的那个的使用次数上加一，否则就新增；
+        $previous = UsedTimes::find()->all();
         $model = new Reserve();
         $model->date = $_GET['date'];
         $model->site = $_GET['site'];
@@ -84,6 +92,32 @@ class ReserveWithGiiController extends Controller
         if($_GET['p']==3)
             $model->beginperiod = "晚上";
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            if($previous==null)
+            {
+                $usedtimes->used_times = 1;
+                $usedtimes->save();
+            }
+            else{
+                $hasprevious = 0;
+                foreach($previous as $previouses)
+                {
+                if ($previouses->site_name == $usedtimes->site_name &&
+                    date('Y-m',strtotime($previouses->date)) ==
+                    date('Y-m',strtotime($usedtimes->date)))
+                {
+                    $previouses->used_times += 1;
+                    $hasprevious = 1;
+                    $previouses->update();
+                }
+                }
+                if($hasprevious==0){
+                    $usedtimes->used_times = 1;
+                    $usedtimes->save();
+                }
+
+            }
+
+
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [

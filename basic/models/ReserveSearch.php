@@ -41,7 +41,7 @@ class ReserveSearch extends Reserve
      */
     public function search($params)
     {
-        $query = Reserve::find();
+        $query = Reserve::find()->orderBy('date');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Site;
 use Yii;
 use app\models\UsedTimes;
 use app\models\UsedTimesSearch;
@@ -33,14 +34,18 @@ class UsedTimesController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new UsedTimesSearch();
-
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-
+//        $searchModel = new UsedTimesSearch();
+//
+//        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+//        return $this->render('index', [
+//            'searchModel' => $searchModel,
+//            'dataProvider' => $dataProvider,
+//        ]);
+        $sites = new Site();
+        $sites = Site::find()->all();
+        $usedtimes = new UsedTimes();
+        $usedtimes = UsedTimes::find()->all();
+        return $this->render('index',['usedtimes'=>$usedtimes,'sites'=>$sites,
         ]);
     }
 
