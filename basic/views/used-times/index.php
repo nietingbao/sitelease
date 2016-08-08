@@ -6,7 +6,9 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\UsedTimesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-
+//如果是管理员之外的身份，功能就只有一部分
+if(Yii::$app->user->getId() != 10)
+    $this->context->layout = "layout2";
 $this->title = '';
 $this->params['breadcrumbs'][] = $this->title;
 \app\assets\AppAsset::register($this);
@@ -56,18 +58,15 @@ $this->registerJsFile('@web/javascript/usedtimes.js');
         $data = stripslashes($data);//删除用户输入数据中的反斜杠（\）
         $data = htmlspecialchars($data);//安全性检验
         return $data;
-
     }
     if(isset($_GET["year"])) {
         $year = (!empty(test_input($_GET["year"])) ? test_input($_GET["year"]) : null);
         $month = (!empty(test_input($_GET["month"])) ? test_input($_GET["month"]) : null);
     }
     else{
-
         $year=date('Y');
         $month=(date('m')*1)/1;
     }
-
     ?>
     <script>
         if(<?=$year?>!=""){
@@ -113,7 +112,6 @@ class="con_tb sat_tb room border">
                 </td>
         </tr>
         <?php
-
         }
         ?>
 </table>

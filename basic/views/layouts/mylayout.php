@@ -57,31 +57,6 @@ $this->title = "场地租赁系统";
             <div class="nav">
 
             <ul class="nav nav-stacked nav-tabs" role="tablist">
-<!--                <div class="mynav">-->
-<!--                <li role="presentation"><a href="/sitelease/basic/web/?r=reserve-with-gii/index"-->
-<!--                data-toggle = "tab">recent reserve</a></li>-->
-<!--                </div>-->
-<!--                    <div class="mynav">-->
-<!--                <li role="presentation"><a href="/sitelease/basic/web/?r=reserve-with-gii/reserve"-->
-<!--                     data-toggle = "tab">-->
-<!--                        reserve</a></li>-->
-<!--                    </div>-->
-<!--                    <div class="mynav">-->
-<!--                <li role="presentation" role="tab"><a href=-->
-<!--                "/sitelease/basic/web/?r=sites-with-gii/index" data-toggle="tab"-->
-<!--                     data-toggle = "tab">sites</a></li>-->
-<!--                    </div>-->
-<!--                        <div class="mynav">-->
-<!--                <li role="presentation" data-toggle="tab" role="tab"><a href=-->
-<!--                "/sitelease/basic/web/?r=customers-with-gii/index" data-toggle="tab"-->
-<!--                      data-toggle = "tab">customers</a></li>-->
-<!--                        </div>-->
-<!--                            <div class="mynav">-->
-<!--                <li role="presentation" data-toggle="tab" role="tab"><a href=-->
-<!--                      "/sitelease/basic/web/?r=apartments-with-gii/index"-->
-<!--                       data-toggle="tab">apartments</a></li>-->
-<!--                            </div>-->
-
                 <li role="presentation">
                     <a href=
                        "/sitelease/basic/web/reserve-with-gii/index"
