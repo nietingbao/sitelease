@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Site;
 use Yii;
 use app\models\Apartment;
 use app\models\ApartmentSearch;
@@ -63,6 +64,8 @@ class ApartmentsWithGiiController extends Controller
      */
     public function actionCreate()
     {
+        $all_sites = new Site();
+        $all_sites = Site::find()->all();
         $model = new Apartment();
         function test_input($data){
             $data = trim($data);//去除用户输入数据中不必要的字符（多余的空格、制表符、换行）
@@ -73,7 +76,7 @@ class ApartmentsWithGiiController extends Controller
         if(isset($_POST["name"])) {
             $name = (!empty(test_input($_POST["name"])) ? test_input($_POST["name"]) : null);
 
-                $sites=implode(" ",$_POST['sites']);
+            $sites=implode(" ",$_POST['sites']);
 
             $model->name = $name;
             $model->site_to_lease = $sites;
@@ -85,6 +88,7 @@ class ApartmentsWithGiiController extends Controller
         else{
             return $this->render('create', [
                 'model' => $model,
+                'all_sites' => $all_sites,
             ]);
         }
 

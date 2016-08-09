@@ -2,7 +2,10 @@
 
 namespace app\controllers;
 
+use app\models\Apartment;
+use app\models\Customer;
 use app\models\UsedTimes;
+use app\models\User;
 use Yii;
 use app\models\Reserve;
 use app\models\ReserveSearch;
@@ -114,10 +117,7 @@ class ReserveWithGiiController extends Controller
                     $usedtimes->used_times = 1;
                     $usedtimes->save();
                 }
-
             }
-
-
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -159,8 +159,27 @@ class ReserveWithGiiController extends Controller
     }
 
     public function actionReserve(){
-        $site = new Site();
-        $site = Site::find()->all();
+        $id = Yii::$app->user->getId();
+        //管理员可预约所有场地，一般的用户根据其所属部门的预约权限预约；
+        if($id!=10){
+            $user = User::find()
+                ->where(['id' => $id])
+                ->one();
+            $username = $user->username;
+            $customer = Customer::find()
+                ->where(['name' => $username])
+                ->one();
+            $department = $customer->apartment;
+            $depart = Apartment::find()
+                ->where(['name' => $department])
+                ->one();
+            $site_to_lease = $depart->site_to_lease;//获取到了该用户可预约的场地，字符串，应该转换为数组；
+            $site = explode(" ",$site_to_lease);
+        }
+        else{
+            $site = new Site();
+            $site = Site::find()->all();
+        }
         $reserve = new Reserve();
         $reserve = Reserve::find()->all();
         return $this->render('reserve',['site' => $site,'reserve'=>$reserve]);

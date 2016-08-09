@@ -109,17 +109,17 @@ function getDays($year,$month){
     foreach($site as $sites){
     ?>
     <tr>
-        <td rowspan="3" ><?= $sites->site_name?></td>
+        <td rowspan="3" ><?= $sites?></td>
         <td>上午</td>
 <?php
 for($i=1;$i<=$days;$i++){
 ?>
     <td class="date"><a href=
-           "/sitelease/basic/web/reserve-with-gii/create?&site=<?= $sites->site_name?>&p=1&date=<?= $year."-".$month."-".$i?>"
+           "/sitelease/basic/web/reserve-with-gii/create?&site=<?= $sites?>&p=1&date=<?= $year."-".$month."-".$i?>"
             <?php
             foreach($reserve as $r){
                 $str = $year."-".$month."-".$i;
-                if($r->site==$sites->site_name&&$r->beginperiod=="上午"&&strtotime($str)==strtotime($r->date)){
+                if($r->site==$sites&&$r->beginperiod=="上午"&&strtotime($str)==strtotime($r->date)){
                     $attr = "reserved" ?>
                     class="<?= $attr?>"
             <?php
@@ -136,11 +136,11 @@ for($i=1;$i<=$days;$i++){
         for($i=1;$i<=$days;$i++){
         ?>
         <td class="date"><a href=
-               "/sitelease/basic/web/reserve-with-gii/create?&site=<?= $sites->site_name?>&p=2&date=<?= $year."-".$month."-".$i?>"
+               "/sitelease/basic/web/reserve-with-gii/create?&site=<?= $sites?>&p=2&date=<?= $year."-".$month."-".$i?>"
                 <?php
                 foreach($reserve as $r){
                     $str = $year."-".$month."-".$i;
-                    if($r->site==$sites->site_name&&$r->beginperiod=="下午"&&strtotime($str)==strtotime($r->date)){
+                    if($r->site==$sites&&$r->beginperiod=="下午"&&strtotime($str)==strtotime($r->date)){
                         $attr = "reserved" ?>
                         class="<?= $attr?>"
                         <?php
@@ -156,11 +156,11 @@ for($i=1;$i<=$days;$i++){
         for($i=1;$i<=$days;$i++){
         ?>
     <td class="date"><a href=
-           "/sitelease/basic/web/reserve-with-gii/create?&site=<?= $sites->site_name?>&p=3&date=<?= $year."-".$month."-".$i?>"
+           "/sitelease/basic/web/reserve-with-gii/create?&site=<?= $sites?>&p=3&date=<?= $year."-".$month."-".$i?>"
             <?php
             foreach($reserve as $r){
                 $str = $year."-".$month."-".$i;
-                if($r->site==$sites->site_name&&$r->beginperiod=="晚上"&&strtotime($str)==strtotime($r->date)){
+                if($r->site==$sites&&$r->beginperiod=="晚上"&&strtotime($str)==strtotime($r->date)){
                     $attr = "reserved" ?>
                     class="<?= $attr?>"
                     <?php
