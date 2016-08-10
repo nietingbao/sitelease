@@ -177,8 +177,12 @@ class ReserveWithGiiController extends Controller
             $site = explode(" ",$site_to_lease);
         }
         else{
-            $site = new Site();
-            $site = Site::find()->all();
+            $allsite = new Site();
+            $allsite = Site::find()->all();
+            $site = array();
+            foreach($allsite as $sites){
+                array_push($site,$sites->site_name);
+            }
         }
         $reserve = new Reserve();
         $reserve = Reserve::find()->all();

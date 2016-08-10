@@ -2,12 +2,15 @@
 
 namespace app\controllers;
 
+use app\models\Apartment;
+use app\models\CustomerForm;
 use Yii;
 use app\models\Customer;
 use app\models\CustomerSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\User;
 
 /**
  * CustomersWithGiiController implements the CRUD actions for Customer model.
@@ -61,13 +64,20 @@ class CustomersWithGiiController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Customer();
+        $model = new CustomerForm();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        $customer = new Customer();
+        if ($model->load(Yii::$app->request->post())) {
+
+            $user = $model->signUp();//先注册新用户，（用户名和密码）
+            $customer = $model->addCustomer();
+
+
+            return $this->redirect(['view', 'id' => $customer->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+
             ]);
         }
     }

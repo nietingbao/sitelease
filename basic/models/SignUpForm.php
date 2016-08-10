@@ -44,7 +44,6 @@ class SignUpForm extends Model
                 $teacherRole = $auth->getRole('teacher');
                 $auth->assign($teacherRole,$user->getId());
                 return $user;
-
             }
         }
         return false;
