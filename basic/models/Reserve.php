@@ -32,10 +32,11 @@ class Reserve extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['site', 'date', 'begintime', 'depart', 'operator', 'activity', 'beginperiod'], 'required'],
+            [['site', 'date', 'begintime','beginperiod'], 'required'],
             [['date', 'begintime'], 'safe'],
             [['site', 'depart', 'operator', 'activity'], 'string', 'max' => 20],
-            [['beginperiod'], 'string', 'max' => 10]
+            [['beginperiod'], 'string', 'max' => 10],
+            [['operator', 'activity', 'depart',],'string'],
         ];
     }
 

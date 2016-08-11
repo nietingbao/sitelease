@@ -34,8 +34,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'date',
             'begintime',
             'depart',
-            // 'operator',
-            // 'activity',
+            'operator',
+             'activity',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
