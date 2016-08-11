@@ -13,7 +13,7 @@ use yii\base\Model;
 use app\models\User;
 
 
-class CustomerForm extends Model
+class UpdateCustomerForm extends Model
 {
     public $username;
     public $password;
@@ -23,34 +23,17 @@ class CustomerForm extends Model
     public $phonenum;
     public function rules(){
         return [
-            [['username','password','repassword','phonenum','department'],'required','message' => '必填'],
+            [['username','phonenum','department'],'required','message' => '必填'],
             ['username','unique','targetClass' => 'app\models\User'],
             ['username','string','min' => 2,'max' => 20],
             ['password','string','min' => 5],
             ['repassword','compare','compareAttribute' => 'password','message' => '两次密码不一致'],
             ['remark','string','max'=>100],
-            ];
+
+        ];
     }
-    public function signUp(){
-        if($this -> validate())
-        {
-            echo "注册成功";
-            $user = new User();
-            $user->username = $this->username;
-            $user->password = $this->password;
-            if($user->save())
-            {
-                //给新注册的成员赋予老师的角色
-                $auth = Yii::$app->authManager;
-                $teacherRole = $auth->getRole('teacher');
-                $auth->assign($teacherRole,$user->getId());
-                return $user;
-            }
-        }
-        return false;
-    }
-    public function addCustomer(){
-        echo "验证成功";
+    
+    public function updateCustomer(){
         function getIP() {
             if (getenv('HTTP_CLIENT_IP')) {
                 $ip = getenv('HTTP_CLIENT_IP');
@@ -80,9 +63,8 @@ class CustomerForm extends Model
         $customer->apartment = $this->department;
         $customer->phonenum = $this->phonenum;
         $customer->loginip = getIp();
+        date_default_timezone_set('PRC');
         $customer->logintime = date("Y-m-d H:i:s");
-        $customer->save();
-        echo "nice";
-        return $customer;
+        $customer->update();
     }
 }

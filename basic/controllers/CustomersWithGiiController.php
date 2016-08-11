@@ -65,14 +65,10 @@ class CustomersWithGiiController extends Controller
     public function actionCreate()
     {
         $model = new CustomerForm();
-
         $customer = new Customer();
         if ($model->load(Yii::$app->request->post())) {
-
             $user = $model->signUp();//先注册新用户，（用户名和密码）
             $customer = $model->addCustomer();
-
-
             return $this->redirect(['view', 'id' => $customer->id]);
         } else {
             return $this->render('create', [
@@ -88,15 +84,54 @@ class CustomersWithGiiController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionUpdate($id)
+    public function actionUpdate($id,$username)//id是customers的id。username用于可能对user数据的修改
     {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        $model = new \app\models\UpdateCustomerForm();
+        $customer = $this->findModel($id);//这是customer的model
+        $user = \app\models\User::findOne(['username' => $username]);
+        $model->username = $username;
+        $model->remark = $customer->remark;
+        $model->department = $customer->apartment;
+        $model->phonenum = $customer->phonenum;
+        if ($model->load(Yii::$app->request->post())) {
+            function getIP() {
+                if (getenv('HTTP_CLIENT_IP')) {
+                    $ip = getenv('HTTP_CLIENT_IP');
+                }
+                elseif (getenv('HTTP_X_FORWARDED_FOR')) {
+                    $ip = getenv('HTTP_X_FORWARDED_FOR');
+                }
+                elseif (getenv('HTTP_X_FORWARDED')) {
+                    $ip = getenv('HTTP_X_FORWARDED');
+                }
+                elseif (getenv('HTTP_FORWARDED_FOR')) {
+                    $ip = getenv('HTTP_FORWARDED_FOR');
+                }
+                elseif (getenv('HTTP_FORWARDED')) {
+                    $ip = getenv('HTTP_FORWARDED');
+                }
+                else {
+                    $ip = $_SERVER['REMOTE_ADDR'];
+                }
+                return $ip;
+            }
+            $customer->name = $model->username;
+            $customer->remark = $model->remark;
+            $customer->apartment = $model->department;
+            $customer->phonenum = $model->phonenum;
+            $customer->loginip = getIp();
+            date_default_timezone_set("PRC");
+            $customer->logintime = date("Y-m-d H:i:s");
+            $customer->update();
+            if(isset($model->password)){
+                $user->password = $model->password;
+                $user->update();
+            }
+            return $this->redirect(['view', 'id' => $customer->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'customer' => $customer,
             ]);
         }
     }
@@ -110,7 +145,6 @@ class CustomersWithGiiController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
-
         return $this->redirect(['index']);
     }
 

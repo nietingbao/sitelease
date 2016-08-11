@@ -34,7 +34,16 @@ $this->params['breadcrumbs'][] = $this->title;
             'logintime',
             // 'loginip',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{update},{delete}',
+                'buttons' => [
+                    'update' => function($url,$model,$key){
+                        $url = 'update?id='.$model->id.'&username='.$model->name;//
+                        return Html::a('修改',$url);
+                    }
+                ],
+            ],
         ],
     ]); ?>
 
