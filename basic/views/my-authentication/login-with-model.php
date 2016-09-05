@@ -33,8 +33,7 @@ $this->registerCssFile('@web/css/login.css');
             'login-button']); ?>
         </div>
     <?php ActiveForm::end(); ?>
-    <?php echo Html::a('sign up',['my-authentication/sign-up'])
-    ; ?>
+
 
 <?php } else { ?>
 <!-- <h2>you are authenticated!</h2>-->

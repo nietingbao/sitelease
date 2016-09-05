@@ -8,6 +8,7 @@
 
 namespace app\controllers;
 
+use app\models\PersonalInfoForm;
 use app\models\User;
 use Yii;
 use yii\web\Controller;
@@ -20,9 +21,19 @@ class PersonalInfoController extends Controller
         $user = User::findOne(['id' => Yii::$app->user->getId()]);
         $username = $user->username;
         $customer = Customer::findOne(['name' => $username]);
+        $model = new PersonalInfoForm();
+        $model->username = $customer->name;
+        $model->remark = $customer->remark;
+        $model->department = $customer->apartment;
+        $model->phonenum = $customer->phonenum;
+        if($model->load(Yii::$app->request->post()))
+        {
+            $customer->phonenum = $model->phonenum;
+            $customer->update();
+        }
         if($user != null);
         {
-            return $this->render('view',['customer' => $customer]);
+            return $this->render('view',['model' => $model]);
         }
     }
 }

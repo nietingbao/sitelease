@@ -7,7 +7,7 @@
  */
 
 use yii\helpers\Html;
-use yii\widgets\DetailView;
+use yii\widgets\ActiveForm;
 
 
 /* @var $this yii\web\View */
@@ -17,25 +17,20 @@ use yii\widgets\DetailView;
 if(Yii::$app->user->getId() != 10)
     $this->context->layout = "layout2";
 
-$this->title = 'personal info';
-$this->params['breadcrumbs'][] = ['label' => 'Customers', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+//$this->title = 'personal info';
+//$this->params['breadcrumbs'][] = ['label' => 'Customers', 'url' => ['index']];
+//$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="personal-info">
+    <?php $form = ActiveForm::begin();?>
 
-
-
-    <?= DetailView::widget([
-        'model' => $customer,
-        'attributes' => [
-            'id',
-            ['label'=>'用户名','value'=>$customer->name],
-            ['label'=>'备注','value'=>$customer->remark],
-            ['label'=>'部门','value'=>$customer->apartment],
-            ['label'=>'电话','value'=>$customer->phonenum],
-        ],
-    ]) ?>
-
-
+    <?= $form->field($model, 'username')->textInput()->label("用户名");?>
+    <?= $form->field($model, 'remark')->textInput()->label("备注");?>
+    <?= $form->field($model, 'department')->textInput()->label("部门");?>
+    <?= $form->field($model, 'phonenum')->textInput()->label("电话");?>
+    <div class="form-group">
+        <?= Html::submitButton() ?>
+    </div>
+    <?php ActiveForm::end();?>
 
 </div>
