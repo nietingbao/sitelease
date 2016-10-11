@@ -15,7 +15,9 @@ $this->params['breadcrumbs'][] = 'Update';
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_updateform', [
-        'model' => $model,
+        'model' => $model,//需要场地；
+        'all_sites' => $all_sites,
+        'depart_sites' =>$depart_sites,
     ]) ?>
 
 </div>

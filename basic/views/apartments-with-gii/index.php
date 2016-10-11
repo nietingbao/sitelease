@@ -9,6 +9,7 @@ use yii\grid\GridView;
 
 $this->title = '';
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="apartment-index">
 
@@ -25,11 +26,13 @@ $this->params['breadcrumbs'][] = $this->title;
         //'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'id',
             'name',
             'site_to_lease',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+                'header' => '操作',
+                'template' => '{update} {delete}',
+            ],
         ],
     ]); ?>
 

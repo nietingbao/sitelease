@@ -13,7 +13,7 @@ use app\models\Apartment;
     <?php
     $form = ActiveForm::begin()
     ?>
-    <?= $form->field($model,'username')->textInput()->label("用户名");?>
+    <?= $form->field($model,'username')->textInput()->label("用户名"); ?>
     <?= $form->field($model,'password')->passwordInput()->label("密码");?>
     <?= $form->field($model,'repassword')->passwordInput()->label("确认密码");?>
     <?= $form->field($model,'remark')->textInput()->label("备注");?>

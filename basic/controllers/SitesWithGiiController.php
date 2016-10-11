@@ -70,7 +70,6 @@ class SitesWithGiiController extends Controller
         return $this->render('look', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-
         ]);
     }
 

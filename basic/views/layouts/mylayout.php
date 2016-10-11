@@ -10,6 +10,8 @@ use app\assets\AppAsset;
 
 AppAsset::register($this);
 $this->registerCssFile('@web/css/layout.css');
+$this->registerJsFile('@web/javascript/jquery.min.js');
+$this->registerJsFile('@web/javascript/layout.js');
 $this->title = "场地租赁系统";
 ?>
 <?php $this->beginPage() ?>
@@ -55,48 +57,52 @@ $this->title = "场地租赁系统";
         </div>
 
             <div class="nav">
-
+                <nav class="navbar navbar-default" role = "navigation">
+                    <div class="">
             <ul class="nav nav-stacked nav-tabs" role="tablist">
-                <li role="presentation">
+                <li>
                     <a href=
                        "/sitelease/basic/web/reserve-with-gii/index"
                        data-toggle = "tab">最近预约</a></li>
-                <li role="presentation">
+                <li>
                     <a href=
                        "/sitelease/basic/web/reserve-with-gii/reserve"
                        data-toggle = "tab">预约场地</a></li>
-                <li role="presentation" data-toggle="tab" role="tab">
+                <li>
                     <a href=
                        "/sitelease/basic/web/sites-with-gii/look"
                        data-toggle="tab">查看场地</a></li>
-                <li role="presentation" data-toggle="tab" role="tab">
+                <li>
                     <a href=
                        "/sitelease/basic/web/used-times/index"
                        data-toggle="tab">使用统计</a></li>
-                <li role="presentation" role="tab">
+                <li>
                     <a href=
                        "/sitelease/basic/web/sites-with-gii/index"
                        data-toggle = "tab">场地管理</a></li>
-                <li role="presentation" role="tab">
+                <li>
                     <a href=
                        "/sitelease/basic/web/customers-with-gii/index"
                        data-toggle = "tab">人员管理</a></li>
-                <li role="presentation" data-toggle="tab" role="tab">
+                <li>
                     <a href=
                        "/sitelease/basic/web/apartments-with-gii/index"
                        data-toggle="tab">部门管理</a></li>
-                <li role="presentation" data-toggle="tab" role="tab">
+                <li>
                     <a href=
                        "/sitelease/basic/web/change-password/change-password"
                        data-toggle="tab">修改密码</a></li>
-                <li role="presentation" data-toggle="tab" role="tab">
+                <li>
                     <a href=
                        "/sitelease/basic/web/personal-info/view"
                        data-toggle="tab">个人信息</a></li>
 
 
             </ul>
+                        </div>
+                </nav>
             </div>
+
             <div class="content">
             <?= $content ?>
             </div>

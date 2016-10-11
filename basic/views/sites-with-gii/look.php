@@ -35,7 +35,14 @@ $this->params['breadcrumbs'][] = $this->title;
             'site_type',
             'site_galleryful',
             'site_facilities',
-
+            [
+                'label' => '操作',
+                'format'=>'raw',
+                'value' => function($data){
+                    $url = "/sitelease/basic/web/reserve-with-gii/reserve";
+                    return Html::a('预约', $url);
+                }
+            ],
        //     ['class' => 'yii\grid\ActionColumn'],
         ],
     ]);

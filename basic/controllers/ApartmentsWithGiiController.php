@@ -17,6 +17,7 @@ class ApartmentsWithGiiController extends Controller
 {
     public $enableCsrfValidation = false;
     public $layout = "mylayout";
+    public $nav = 1;//用于前端判断导航栏的样式；
     public function behaviors()
     {
 
@@ -36,10 +37,12 @@ class ApartmentsWithGiiController extends Controller
      */
     public function actionIndex()
     {
+        global $nav;
         $searchModel = new ApartmentSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
+            'nav' => $nav,
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
@@ -75,14 +78,11 @@ class ApartmentsWithGiiController extends Controller
         }
         if(isset($_POST["name"])) {
             $name = (!empty(test_input($_POST["name"])) ? test_input($_POST["name"]) : null);
-
             $sites=implode(" ",$_POST['sites']);
-
             $model->name = $name;
             $model->site_to_lease = $sites;
             $model->save();
             var_dump($model);
-
             return $this->redirect(['view', 'id' => $model->id]);
         }
         else{
@@ -118,17 +118,25 @@ class ApartmentsWithGiiController extends Controller
             $data = htmlspecialchars($data);//安全性检验
             return $data;
         }
-        if(isset($_POST["name"])) {
-            $name = (!empty(test_input($_POST["name"])) ? test_input($_POST["name"]) : null);
-            $sites=implode(" ",$_POST["sites"]);
-            $model->name = $name;
-            $model->site_to_lease = $sites;
+
+        $all_sites = new Site();
+        $sites = explode(" ",$model->site_to_lease);
+        $all_sites = Site::find()->all();
+        $depart_sites = Site::find()->where(['in','site_name',$sites])->all();
+        if(isset($_POST["sites"])) {
+//            $name = (!empty(test_input($_POST["name"])) ? test_input($_POST["name"]) : null);
+//            $sites=implode(" ",$_POST["sites"]);
+//            $model->name = $name;
+            $site = implode(" ",$_POST["sites"]);
+            $model->site_to_lease = $site;
             $model->update();
             return $this->redirect(['view', 'id' => $model->id]);
         }
         else {
             return $this->render('update', [
                 'model' => $model,
+                'all_sites' => $all_sites,//所有场地
+                'depart_sites' => $depart_sites,//该部门可以预约的场地；
             ]);
         }
     }

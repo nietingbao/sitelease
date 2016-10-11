@@ -123,15 +123,17 @@ class CustomersWithGiiController extends Controller
             date_default_timezone_set("PRC");
             $customer->logintime = date("Y-m-d H:i:s");
             $customer->update();
-            if(isset($model->password)){
+            if(isset($model->password)){//如果修改了密码，就保存新密码
                 $user->password = $model->password;
                 $user->update();
             }
             return $this->redirect(['view', 'id' => $customer->id]);
         } else {
+            $action = "update";
             return $this->render('update', [
                 'model' => $model,
                 'customer' => $customer,
+                'action' => $action,
             ]);
         }
     }

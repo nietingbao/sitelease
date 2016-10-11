@@ -30,10 +30,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'site_type',
             'site_galleryful',
             'site_facilities',
-
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'header' => '操作',
+                'template' => '{update} {delete}',
+            ]
+            ]
+            ]); ?>
 
 
 </div>

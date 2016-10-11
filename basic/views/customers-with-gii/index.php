@@ -24,8 +24,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
     //    'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
+            ['class' => 'yii\grid\SerialColumn',
+            ],
            // 'id',
             'name',
             'remark',
@@ -36,12 +36,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
             [
                 'class' => 'yii\grid\ActionColumn',
-                'template' => '{update},{delete}',
+                'header' => '操作',
+                'template' => '{update} {delete}',
                 'buttons' => [
                     'update' => function($url,$model,$key){
                         $url = 'update?id='.$model->id.'&username='.$model->name;//
-                        return Html::a('修改',$url);
-                    }
+                        return Html::a('<i class="glyphicon glyphicon-pencil"></i>',$url);
+                    },
+
                 ],
             ],
         ],
